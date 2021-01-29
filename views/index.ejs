@@ -1,13 +1,79 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  <p>test</p>
-    <p>test</p>
-  </body>
+<html lang='ru'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Эльфель</title>
+  <link rel='icon' href='/favicon.svg' sizes='16x16'>
+  <link rel='stylesheet' href='/stylesheets/styles.css' />
+</head>
+<body>
+<main class='main'>
+  <header class='header'>
+    <div class='header__content container'>
+      <div class='header__logo'>
+        <a class='logo' href='/'>
+          <h1>Эль<span>фель</span></h1>
+        </a>
+        <p class='header__hint hint'>Более 200 реализованных проектов</p>
+      </div>
+
+      <div class='header__phone'>
+        <p class='hint'>Приём заявок без перерывов и выходных</p>
+        <a href='tel:+79969383396' class='link'>
+          +7 (996) 938-33-96
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class='container--flex-column container'>
+    <div class='main__header'>
+      <h3 class='main__header--second'>в Томске и области</h3>
+      <h2 class='main__header--first'>Ремонт и отделка квартир под ключ</h2>
+      <h3 class='main__header--mark'>Без предоплаты. В короткие сроки</h3>
+    </div>
+
+    <div class='main__info'>
+      <div class='main-info'>
+        <div class='main-info__ad'>
+          <div class='main-info-ad'>
+            <p class='main-info-ad__name'>Укладка плитки</p>
+            <p class='main-info-ad__price'>от 700 руб/м2</p>
+          </div>
+
+          <div class='switches'>
+            <input class='switches__button' type='radio' id='1' name='ad' value='1' checked>
+            <input class='switches__button' type='radio' id='2' name='ad' value='2'>
+            <input class='switches__button' type='radio' id='3' name='ad' value='3'>
+            <input class='switches__button' type='radio' id='4' name='ad' value='4'>
+          </div>
+        </div>
+        <form class='main-info__form form'>
+          <div class='form__header form-header'>
+            <p class='form-header__main'>Оставьте заявку</p>
+            <p class='form-header__mark'>на бесплатный выезд замерщика и расчет сметы</p>
+          </div>
+
+          <input type='text' class='form__input' placeholder='Ваше имя' required>
+          <input type='tel' class='form__input' placeholder='Номер телефона' required>
+
+          <input class='form__button' type='submit' value='Отправить'>
+        </form>
+      </div>
+    </div>
+
+    <!--<div class='main__content'>
+        <ul class='main-content__list'>
+            <li class='main-content__item text-regular'>Гарантия</li>
+            <li class='main-content__item text-regular'>Бесплатный расчет стоимости</li>
+            <li class='main-content__item text-regular'>Поэтапная оплата</li>
+            <li class='main-content__item text-regular'>Официальный договор</li>
+        </ul>
+    </div>-->
+  </div>
+</main>
+<script src='/javascripts/index.js'></script>
+</body>
 </html>
