@@ -7,8 +7,7 @@ var sms = new SMSru('1084D6ED-A727-DA85-DA94-7AC96F7B360E');
 router.post('/', function (req, res, next) {
     sms.sms_send({
         to: '79969383396',
-        text: req.body.text,
-        test: 1
+        text: req.body.text
     }, function (e) {
         if (e.code === '100') {
             return res.status(200).json({message: e.description});
