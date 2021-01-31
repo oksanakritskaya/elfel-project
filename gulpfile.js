@@ -26,9 +26,8 @@ function css() {
 }
 
 function js() {
-    return src('public/ts/*.ts')
+    return src('public/javascripts/*.js')
         .pipe(sourcemaps.init())
-        .pipe(ts())
         .pipe(concat('index.js'))
         .pipe(terser())
         .pipe(sourcemaps.write('.'))
@@ -43,6 +42,6 @@ task('watch', function () {
         ui: {port: 3003},                //UI, can be any port
         reloadDelay: 1000                //Important, otherwise syncing will not work
     });
-    watch('public/ts/*.ts', js);
+    watch('public/javascripts/*.js', js);
     watch('public/scss/*.scss', css).on('change', browserSync.reload);
 });
