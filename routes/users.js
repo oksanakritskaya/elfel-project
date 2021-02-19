@@ -9,6 +9,7 @@ router.post('/', function (req, res, next) {
         to: '79969383396',
         text: req.body.text
     }, function (e) {
+        debugger;
         if (e.code === '100') {
             return res.status(200).json({message: e.description});
         }

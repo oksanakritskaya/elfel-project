@@ -3,22 +3,10 @@
 
 body {
   font-family: Roboto;
-  font-size: 16px;
+  //font-size: 16px;
 
   background-color: $white;
   color: $white;
-
-  @media (max-width: $width_l), (max-height: $height_l) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 1420px) {
-    font-size: 13px;
-  }
-
-  @media (max-width: $width_m) {
-    font-size: 12px;
-  }
 }
 
 a {
@@ -27,14 +15,16 @@ a {
 }
 
 .main {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
 
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, $white 100%),
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 10%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 70%, $white 100%),
   url('../images/main-background.jpg');
   background-size: cover;
+  background-position: 25% 80%;
 
   .container {
     &--flex-column {
@@ -43,32 +33,30 @@ a {
     }
   }
 
-  &__header {
-    flex: 1 1 50%;
+  &__title {
+    padding: 54px 0;
+    flex: 1 0 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     text-align: center;
 
-    &--first {
-      font-size: 6.5vh;
-      font-weight: 700;
-      text-shadow: 1px 1px 2px $black;
-
-      @media (max-width: $width_s) {
-        font-size: 3rem;
-      }
-    }
-
-    &--second {
-      font-size: 1.5rem;
+    &--location {
+      @include responsiveText(16px, 20px);
       font-weight: 500;
       text-align: right;
     }
 
+    &--name {
+      margin-bottom: 8px;
+      @include responsiveText(36px, 60px);
+      font-weight: 700;
+      text-shadow: 1px 1px 2px $black;
+    }
+
     &--mark {
-      font-size: 225%;
+      @include responsiveText(18px, 24px);
       font-style: italic;
       color: $orange;
     }
@@ -77,43 +65,17 @@ a {
   &__info {
     flex: 0 2 50%;
 
-    max-width: 80%;
     width: 100%;
-
-    @media (max-width: $width_l) {
-      max-width: 90%;
-    }
-
-    @media (max-width: $width_m) {
-      max-width: 100%;
-    }
   }
 }
 
 .header {
-  padding: 1rem;
+  padding: 30px 0;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap-reverse;
 
   width: 100%;
-  height: 11%;
-
-  display: flex;
-
-  background: rgba($black, 0.7);
-  color: rgba(255, 255, 255, 0.5);
-
-  @media (max-width: $width_s) {
-    height: auto;
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap-reverse;
-
-    @media (max-width: $width_s) {
-      flex-direction: column-reverse;
-    }
-  }
 
   &__logo {
     flex-grow: 2;
@@ -123,16 +85,10 @@ a {
 
     .logo {
       margin-right: 0.8rem;
-
-      @media (max-width: $width_s) {
-        margin: 1rem 0 0 0;
-        font-size: 12vw;
-      }
     }
 
     .hint {
-      max-width: 14.4rem;
-      font-size: 0.86rem;
+      max-width: 175px;
     }
   }
 
@@ -150,14 +106,11 @@ a {
     flex-direction: column;
     align-items: flex-end;
 
-    .hint {
-      margin-bottom: 0.8rem;
-    }
-
     .link {
+      position: relative;
       display: flex;
 
-      font-size: 1.5rem;
+      @include responsiveText(16px, 20px);
       //font-size: 150%;
       font-weight: 500;
       color: $white;
@@ -174,12 +127,43 @@ a {
 
         content: '';
       }
+
+      &:after {
+        margin-bottom: 8px;
+
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+
+        font-size: 14px;
+        color: rgba($white, 0.5);
+        white-space: nowrap;
+        content: 'Приём заявок без перерывов и выходных';
+        @media (max-width: $width_s) {
+          content: 'без перерывов и выходных';
+        }
+
+      }
     }
   }
 }
 
+.main__info, .advantages__list {
+  max-width: 75%;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 1300px) {
+    max-width: 85%;
+  }
+
+  @media (max-width: $width_s) {
+    max-width: 100%;
+  }
+}
+
 .main-info {
-  padding: 4%;
+  padding: 36px 24px;
   height: 100%;
 
   display: flex;
@@ -188,15 +172,11 @@ a {
   align-items: center;
 
   background: linear-gradient(rgba($black, 0.8) 0%, transparent 50%, $white 100%);
-  box-shadow: 0 0 2rem rgba($black, 0.6);
-
-  @media (max-width: 1280px), (max-height: $height_m) {
-    padding: 0;
-  }
+  box-shadow: 0px -13px 15px rgba($black, 0.6);
 
   &__ad {
-    padding: 1.5rem 0;
-    flex: 1 1 53%;
+    padding: 0 24px 36px 0;
+    flex: 3 2 50%;
 
     display: flex;
     flex-direction: column;
@@ -204,9 +184,9 @@ a {
   }
 
   &__form {
-    flex: 1 1 47%;
+    flex: 1 3 50%;
 
-    padding: 2rem;
+    padding: 36px 24px;
 
     min-width: 350px;
 
@@ -217,8 +197,6 @@ a {
 }
 
 .main-info-ad {
-  margin-bottom: 5rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,17 +204,277 @@ a {
   text-align: center;
 
   &__name {
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
 
-    font-size: 3rem;
+    @include responsiveText(24px, 48px);
     font-weight: 700;
-
-    @media (max-width: $width_s) {
-      font-size: 2.5rem;
-    }
   }
 
   &__price {
-    font-size: 200%;
+    @include responsiveText(18px, 30px);
+  }
+}
+
+.advantages {
+  padding: 50px 0;
+
+  background-color: $white;
+  color: $black;
+
+  @media (max-width: 980px) {
+    padding: 30px 0;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    text-align: center;
+  }
+
+  &__item {
+    flex-basis: (100%/3);
+    flex-shrink: 2;
+    flex-grow: 0;
+  }
+
+  .advantages-item {
+    padding: 24px 12px;
+    min-width: 260px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__icon {
+      padding-top: 31%;
+      margin-bottom: 24px;
+
+      width: 100%;
+
+      filter: drop-shadow(0 1px 1px rgba($black, 0.7));
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      &--contract {
+        background-image: url('../images/sprite.svg#contract');
+      }
+
+      &--success {
+        background-image: url('../images/sprite.svg#success');
+      }
+
+      &--smartphone {
+        background-image: url('../images/sprite.svg#smartphone');
+      }
+
+      &--payment {
+        background-image: url('../images/sprite.svg#payment');
+      }
+
+      &--shield {
+        background-image: url('../images/sprite.svg#shield');
+      }
+    }
+
+    &__name {
+      margin-bottom: 1rem;
+
+      @include responsiveText(18px, 24px);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    &__descr {
+      max-width: 345px;
+
+      @include responsiveText(14px, 16px);
+    }
+  }
+}
+
+.points, .portfolio {
+  .title {
+    color: $black;
+  }
+}
+
+.points {
+  color: $black;
+
+  &__map {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.map {
+  margin-bottom: 4px;
+  height: 340px;
+  position: relative;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (max-width: $width_m) {
+    height: 240px;
+  }
+
+  @media (max-width: $width_s) {
+    height: 180px;
+  }
+
+
+  &__point {
+    position: absolute;
+
+    height: 20px;
+    width: 20px;
+
+    border-radius: 50%;
+    background-color: $orange;
+    box-shadow: 0 0 2px 2px rgba($black, 0.5);
+    border: 4px solid $white;
+
+    cursor: pointer;
+
+    &:after {
+      padding: 6px;
+      display: none;
+
+      margin-left: 24px;
+      border-radius: 8px;
+
+      font-size: 12px;
+
+      color: $white;
+      background-color: rgba($black, 0.5);
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 4px 4px rgba($black, 0.5);
+
+      &:after {
+        display: inline-block;
+      }
+    }
+  }
+
+  &--first {
+    background-image: url('../images/map1.jpg');
+    background-position: left;
+
+    .map__point {
+      &:nth-child(1) {
+        top: 17%;
+        left: 17%;
+        animation: pulse 2s infinite;
+
+        &:hover,
+        &:focus {
+          animation: none;
+        }
+
+        &:after {
+          content: 'замена фурнитуры, уплотнителя';
+        }
+      }
+
+      &:nth-child(2) {
+        top: 40%;
+        left: 2%;
+
+        &:after {
+          content: 'регулировка';
+        }
+      }
+
+      &:nth-child(3) {
+        top: 70%;
+        left: 22%;
+
+        &:after {
+          content: 'выравнивание, шпатлевка, безвоздушная покраска стен';
+        }
+      }
+    }
+  }
+
+  &--second {
+    background-image: url('../images/map2.jpg');
+    background-position: right;
+
+    .map__point {
+      &:nth-child(1) {
+        top: 15%;
+        right: 28%;
+
+        &:after {
+          content: 'монтаж инсталляции';
+        }
+      }
+
+      &:nth-child(2) {
+        top: 40%;
+        right: 12%;
+
+        &:after {
+          content: 'укладка плитки';
+        }
+      }
+    }
+  }
+
+  &--third {
+    background-image: url('../images/map3.jpg');
+    background-position: center;
+
+    .map__point {
+      &:nth-child(1) {
+        top: 12%;
+        right: 25%;
+
+        &:after {
+          content: 'установка дверей';
+        }
+      }
+
+      &:nth-child(2) {
+        top: 38%;
+        left: 39%;
+
+        &:after {
+          content: 'установка розеток, выключателей';
+        }
+      }
+
+      &:nth-child(3) {
+        left: 30%;
+        bottom: 38%;
+
+        &:after {
+          content: 'можнтаж плинтуса';
+        }
+      }
+
+      &:nth-child(4) {
+        left: 50%;
+        bottom: 15%;
+
+        &:after {
+          content: 'выравнивание пола, укладка ламината';
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 6px 6px rgba($black, 0.5);
   }
 }

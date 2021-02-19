@@ -12,6 +12,31 @@ $width_xs: 580px;
 $height_l: 900px;
 $height_m: 720px;
 
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@mixin responsiveText($minSize: $font-size, $maxSize: 28px, $minWidth: 420px, $maxWidth: 980px) {
+  $mxS: strip-unit($maxSize);
+  $mnS: strip-unit($minSize);
+  $mxW: strip-unit($maxWidth);
+  $mnW: strip-unit($minWidth);
+
+  font-size: calc(#{$minSize} + (#{$mxS} - #{$mnS}) * (100vw - #{$minWidth}) / (#{$mxW} - #{$mnW}));
+
+  @media screen and (max-width: $minWidth) {
+    font-size: $minSize;
+  }
+
+  @media screen and (min-width: $maxWidth) {
+    font-size: $maxSize;
+  }
+}
+
 
 /*
 Light 300
@@ -20,17 +45,26 @@ Medium 500
 Bold 700
 */
 
+.title {
+  margin-bottom: 60px;
+  @include responsiveText(24px, 36px);
+}
+
+b {
+  font-weight: 500;
+}
+
 .container {
   margin: 0 auto;
 
   max-width: 70%;
   width: 100%;
 
-  @media (max-width: $width_l) {
+  @media (max-width: 1600px) {
     max-width: 80%;
   }
 
-  @media (max-width: $width_m) {
+  @media (max-width: 1300px) {
     max-width: 90%;
   }
 
@@ -49,13 +83,18 @@ Bold 700
 .logo {
   color: $orange;
 
-  font-size: 340%;
+  @include responsiveText(36px, 40px);
   font-weight: bold;
   text-transform: uppercase;
 
   span {
     color: $white;
   }
+}
+
+.hint {
+  @include responsiveText(12px, 14px);
+  color: rgba($white, 0.5);
 }
 
 .icon {
@@ -94,10 +133,10 @@ Bold 700
   border-radius: 5px;
   padding: 0.75rem 0;
 
-  max-width: 314px;
+  max-width: 250px;
 
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
   color: $black;
   text-align: center;
@@ -188,36 +227,36 @@ Bold 700
   color: $white;
 
   &__header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 40px;
   }
 
   .form-header {
     text-align: center;
 
     &__main {
-      margin-bottom: 0.5rem;
-      font-size: 225%;
+      margin-bottom: 8px;
+      @include responsiveText(18px, 30px);
       font-weight: 700;
     }
 
     &__mark {
-      font-size: 1rem;
-      font-weight: 500;
+      @include responsiveText(14px, 14px);
       font-style: italic;
     }
   }
 
   &__input {
-    margin-bottom: 0.75rem;
-    padding: 0.75rem;
+    margin-bottom: 24px;
+    padding: 12px 0;
 
-    max-width: 450px;
+    max-width: 395px;
     width: 100%;
 
     border: none;
     border-bottom: 2px solid $orange;
     background: none;
 
+    font-size: 16px;
     font-family: Roboto;
     color: $white;
 
@@ -227,7 +266,7 @@ Bold 700
   }
 
   &__button {
-    margin-top: 1.5rem;
+    margin-top: 40px;
 
     width: 100%;
     min-height: 40px;

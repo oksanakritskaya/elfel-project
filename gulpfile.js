@@ -46,6 +46,12 @@ function images() {
         .pipe(browserSync.stream());
 }
 
+function images_portfolio() {
+    return src('src/images/portfolio/*.*')
+        .pipe(imagemin()).pipe(dest('public/images/portfolio'))
+        .pipe(browserSync.stream());
+}
+
 function icons() {
     return src('src/images/icons/*.svg')
         .pipe(svgSprite({
@@ -71,6 +77,7 @@ task('watch', function () {
         reloadDelay: 1000
     });
     watch('src/images/*.*', images);
+    watch('src/images/portfolio/*.*', images_portfolio);
     watch('src/images/icons/*.*', icons);
     watch('views/*.ejs', html);
     watch('public/javascripts/*.js', js);
