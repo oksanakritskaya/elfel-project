@@ -1,74 +1,80 @@
 <!DOCTYPE html>
-<html lang='ru'>
+<html lang="ru">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport'
-          content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="keywords"
           content="Ремонт, отделка, монтаж, демонтаж, Эльфель, elfel, elfel.ru, Томск, в томске, сварка, укладка, плитки, плитка, кафель, ламинат, квартир, квартира, офис, офисов, помещений, комнаты, комнат">
     <meta name="description"
           content="Качественные услуги по ремонту и отделке в Томске. Поможем решить Вам любые задачи">
     <meta name="google-site-verification" content="roQ6sVfYxexwLbRtwbm8mJUMH89GQrjXzwc1VZsigi0"/>
     <meta name="yandex-verification" content="bbc1da67beac95b7"/>
-    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Эльфель</title>
-    <link rel='icon' href='/favicon.svg' sizes='16x16'>
-    <link rel='stylesheet' href='/stylesheets/styles.css'/>
+    <link rel="icon" href="/favicon.svg" sizes="16x16">
+    <link rel="stylesheet" href="..//bootstrap.css"/>
+    <link rel="stylesheet" href="/stylesheets/styles.css"/>
 </head>
 <body>
 <script src="/jquery.js"></script>
 <script src="/jquery.inputmask.js"></script>
 <script src="/inputmask.binding.js"></script>
-<main class='main'>
-    <header class='header container'>
-        <div class='header__logo'>
-            <a class='logo' href='/'>
+<script src="/bootstrap.js"></script>
+<main class="main">
+    <header class="header container">
+        <div class="header__logo">
+            <a class="logo" href="/">
                 <h1>Эль<span>фель</span></h1>
             </a>
-            <p class='header__hint hint'>Более 200 реализованных проектов</p>
+            <p class="header__hint hint">Более 200 реализованных проектов</p>
         </div>
 
-        <div class='header__phone'>
-            <a href='tel:+79969383396' class='link'>
+        <div class="header__phone">
+            <a href="tel:+79969383396" class="link">
                 +7 (996) 938-33-96
             </a>
         </div>
     </header>
-    <div class='container--flex-column container'>
-        <div class='main__title'>
-            <h3 class='main__title--location'>в Томске</h3>
-            <h2 class='main__title--name'>Ремонт и отделка под ключ</h2>
-            <h3 class='main__title--mark'>Без предоплаты. В короткие сроки</h3>
+    <div class="container--flex-column container">
+        <div class="main__title">
+            <h3 class="main__title--location">в Томске</h3>
+            <h2 class="main__title--name">Ремонт и отделка под ключ</h2>
+            <h3 class="main__title--mark">Без предоплаты. В короткие сроки</h3>
         </div>
 
-        <div class='main__info'>
-            <div class='main-info'>
-                <div class='main-info__ad'>
-                    <div class='main-info-ad'>
-                        <p class='main-info-ad__name'>Укладка плитки</p>
-                        <p class='main-info-ad__price'>от 700 руб/м2</p>
+        <div class="main__info">
+            <div class="main-info">
+                <!--data-bs-interval="false"-->
+                <div id="carousel1" class="main-info__ad carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <% offers.forEach(function(offer, i){ %>
+                            <div <% if (i == 0) { %>class="main-info-ad carousel-item active"<% } else { %>class="main-info-ad carousel-item"<% }%>>
+                                <p class="main-info-ad__name"><%= offer.name %></p>
+                                <p class="main-info-ad__price">от <%= offer.price %> руб/м2</p>
+                            </div>
+                        <% }); %>
                     </div>
-
-                    <!--<div class='switches'>
-                      <input class='switches__button' type='radio' id='1' name='ad' value='1' checked>
-                      <input class='switches__button' type='radio' id='2' name='ad' value='2'>
-                      <input class='switches__button' type='radio' id='3' name='ad' value='3'>
-                      <input class='switches__button' type='radio' id='4' name='ad' value='4'>
-                    </div>-->
+                    <div class="carousel-indicators switches">
+                        <% offers.forEach(function(offer, i){ %>
+                            <button <% if (i == 0) { %>class="switches__button active"<% } else { %>class="switches__button"<% }%> data-bs-slide-to="<%=i%>" data-bs-target="#carousel1" type="button"></button>
+                        <% }); %>
+                    </div>
                 </div>
-                <form class='main-info__form form'>
-                    <div class='form__header form-header'>
-                        <p class='form-header__main'>Оставьте заявку</p>
-                        <p class='form-header__mark'>на бесплатный выезд замерщика и расчет сметы</p>
+                <form class="main-info__form form">
+                    <div class="form__header form-header">
+                        <p class="form-header__main">Оставьте заявку</p>
+                        <p class="form-header__mark">на бесплатный выезд замерщика и расчет сметы</p>
                     </div>
 
-                    <input type='text' class='form__input' placeholder='Ваше имя' pattern="^[А-Яа-яЁёA-Za-z\s]+$"
+                    <input type="text" class="form__input" name="userName" placeholder="Ваше имя"
+                           pattern="^[А-Яа-яЁёA-Za-z\s]+$"
                            required>
-                    <input type='tel' class='form__input' placeholder='Номер телефона'
+                    <input type="tel" class="form__input" name="userTel" placeholder="Номер телефона"
                            data-inputmask="'mask': '+7 ( 999 ) 999 - 99 - 99'"
                            pattern="\+7\s\(\s[0-9]{3}\s\)\s[0-9]{3}\s-\s[0-9]{2}\s-\s[0-9]{2}" required>
 
-                    <button class='form__button button' type='submit'>Отправить</button>
+                    <button class="form__button button" name="buttonSend" type="submit">Отправить</button>
                 </form>
             </div>
         </div>
@@ -121,6 +127,19 @@
         <input class="map__point" type="radio">
     </div>
 </section>
-<script src='/javascripts/form.js'></script>
+<!--<section class="portfolio">
+    <h3 class="title">Наши работы</h3>
+    <div id="carousel1" class="portfolio__content carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <% portfolio.forEach(function(image, i){ %>
+                <div <% if (i == 0) { %>class="carousel-item active"<% } else { %>class="carousel-item"<% }%>>
+                    <img src="<%= image.image%>" alt="">
+                </div>
+
+            <% }); %>
+        </div>
+    </div>
+</section>-->
+<script src="/javascripts/index.js"></script>
 </body>
 </html>

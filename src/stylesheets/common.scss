@@ -204,17 +204,20 @@ b {
 }
 
 .switches {
-  &__button {
-    margin: 0 1rem;
+  margin-top: 24px;
+  position: static;
 
-    height: 12px;
-    width: 12px;
+  &__button {
+    margin: 0 8px !important;
+
+    height: 12px !important;
+    width: 12px !important;
 
     border-radius: 50%;
     background-color: rgba($black, 0.5);
 
-    &:checked {
-      background: $orange;
+    &.active {
+      background-color: $orange;
     }
   }
 }

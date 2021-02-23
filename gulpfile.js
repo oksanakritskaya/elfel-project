@@ -13,6 +13,12 @@ const gulp = require('gulp'),
 var sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 
+var tsProject = ts.createProject({
+    declaration: true,
+    noImplicitAny: true,
+    out: 'index.js'
+});
+
 function html() {
     return src('views/*.ejs')
         .pipe(browserSync.stream());
@@ -30,11 +36,12 @@ function css() {
         .pipe(browserSync.stream());
 }
 
+task('ts', js);
+
 function js() {
-    return src('public/javascripts/*.js')
+    return src('src/javascripts/*.ts')
         .pipe(sourcemaps.init())
-        .pipe(concat('index.js'))
-        .pipe(terser())
+        .pipe(tsProject())
         .pipe(sourcemaps.write('.'))
         .pipe(dest('public/javascripts'))
         .pipe(browserSync.stream());
@@ -80,6 +87,6 @@ task('watch', function () {
     watch('src/images/portfolio/*.*', images_portfolio);
     watch('src/images/icons/*.*', icons);
     watch('views/*.ejs', html);
-    watch('public/javascripts/*.js', js);
+    watch('src/javascripts/*.ts', js);
     watch('src/stylesheets/*.scss', css).on('change', browserSync.reload);
 });
